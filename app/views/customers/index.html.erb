@@ -1,0 +1,36 @@
+<div class="columns">
+  <div class="column is-multiline is-10 is-offset-1">
+    <div class="column">
+      <h1 class="title">Clientes</h1>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <div class="level-right">
+          <%= link_to 'Cadastrar novo cliente', new_customer_path,
+          class: 'button is-success is-light is-outlined' %>
+        </div>
+        <table class="table is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>CNPJ/CPF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer|%>
+            <tr>
+              <td><%= customer.name %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.phone_number %></td>
+              <td><%= customer.cnpj_cpf %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
