@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 0.0.3'
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'factory_bot_rails'
+  gem 'pry'
 end
 
 group :development do

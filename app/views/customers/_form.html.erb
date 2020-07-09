@@ -1,0 +1,55 @@
+<%= form_with model: @customer do |f| %>
+<div class="columns is-centered">
+  <div class="column is-7">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title is-centered">
+          Novo Cliente
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <div class="field">
+            <%= f.label 'Nome', class: 'label' %>
+            <%= f.text_field :name, class: 'input' %>
+          </div>
+
+          <div class="field">
+            <%= f.label 'Email', class: 'label' %>
+            <%= f.text_field :email, class: 'input' %>
+          </div>
+
+          <div class="field">
+            <%= f.label 'Telefone Principal', class: 'label' %>
+            <%= f.text_field :phone_number, class: 'input' %>
+          </div>
+
+          <div class="field">
+            <%= f.label 'Telefone Adicional', class: 'label' %>
+            <%= f.text_field :second_phone_number, class: 'input' %>
+          </div>
+
+          <div class="field">
+            <%= f.label 'CNPJ/CPF', class: 'label'  %>
+            <%= f.text_field :cnpj_cpf, class: 'input' %>
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <%= link_to 'Cancelar', '#', class: 'button is-danger is-focused is-fullwidth'%>
+        </div>
+        <div class="card-footer-item">
+          <%= f.submit 'Salvar', class: 'button is-success is-focused is-fullwidth'%>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+
+
+
+
