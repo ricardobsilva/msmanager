@@ -18,3 +18,7 @@
 .maincontainer{
   padding-top: 70px;
 }
+
+#customErrorMessage{
+  color: red;
+}
