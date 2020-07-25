@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :customers, only: [:index, :new, :create, :show]
+  resources :customers, only: [:index, :new, :create, :show] do
+    post "validate_email", to: 'customers#validate_email', on: :collection
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

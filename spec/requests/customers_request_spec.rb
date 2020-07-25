@@ -29,4 +29,44 @@ RSpec.describe CustomersController, type: :request do
       end
     end
   end
+
+  describe "GET #validate_email" do
+    context 'when find some email' do
+      it 'must return 200 http status code' do
+        customer = create(:customer)
+
+        post "/customers/validate_email", params: {validate: {email: customer.email}}
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it  'must return a body response with following attributes' do
+        customer = create(:customer)
+
+        post "/customers/validate_email", params: {validate: {email: customer.email}}
+
+        expect(JSON.parse(response.body)).to have_key('avaiable')
+        expect(JSON.parse(response.body)['avaiable']).to eq(false)
+      end
+    end
+
+    context 'when didnt find some email' do
+      it 'must return 200 http status code' do
+        invalid_email = 'invalid'
+
+        post "/customers/validate_email", params: {validate: {email: invalid_email}}
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it  'must return a body response with following attributes' do
+        invalid_email = 'invalid'
+
+        post "/customers/validate_email", params: {validate: {email: invalid_email}}
+
+        expect(JSON.parse(response.body)).to have_key('avaiable')
+        expect(JSON.parse(response.body)['avaiable']).to eq(true)
+      end
+    end
+  end
 end

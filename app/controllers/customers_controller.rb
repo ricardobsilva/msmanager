@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :validate_email
+
   def index
     @customers = Customer.all
   end
@@ -11,10 +13,16 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      redirect_to @customer
+      redirect_to customers_path
     else
       render :new
     end
+  end
+
+  def validate_email
+    body_response = Customer.where(email: params_to_validate[:email])
+
+    render json: {avaiable: body_response.empty? } , status: :ok
   end
 
   private
@@ -28,5 +36,9 @@ class CustomersController < ApplicationController
       :second_phone_number,
       :cpf_cnpj
     )
+  end
+
+  def params_to_validate
+    params.require(:validate).permit(:email, :cnpj_cpf)
   end
 end
