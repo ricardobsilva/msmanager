@@ -24,6 +24,6 @@ RSpec.describe 'Customers::New', type: :feature do
     expect(page).to have_content('Email')
     expect(page).to have_content('Cnpj/cpf')
     expect(page).to have_button('Salvar')
-    expect(page).to have_link('Cancelar')
+    expect(page).to have_link('Cancelar', href: customers_path)
   end
 end

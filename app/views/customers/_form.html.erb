@@ -41,11 +41,10 @@
 
           <div class="field">
             <%= f.label 'CNPJ/CPF', class: 'label'  %>
-            <%= f.text_field :cnpj_cpf,
+            <%= f.text_field :cnpj_cpf, required: true,
                 class: 'input',
                 data: {
-                  target: 'customers--validation.cnpjCpf',
-                  required: true
+                  target: 'customers--validation.cnpjCpf'
                 } %>
 
             <span data-target='customers--validation.cnpjCpfErrorMessage'></span>
@@ -54,7 +53,7 @@
       </div>
       <footer class="card-footer">
         <div class="card-footer-item">
-          <%= link_to 'Cancelar', '#', class: 'button is-danger is-focused is-fullwidth'%>
+          <%= link_to 'Cancelar', customers_path, class: 'button is-danger is-focused is-fullwidth'%>
         </div>
         <div class="card-footer-item">
           <%= f.submit 'Salvar', class: 'button is-success is-focused is-fullwidth'%>
