@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :validate_email
+  skip_before_action :verify_authenticity_token, only: [:validate_email, :validate_cnpj_cpf]
 
   def index
     @customers = Customer.all
@@ -23,6 +23,12 @@ class CustomersController < ApplicationController
     body_response = Customer.where(email: params_to_validate[:email])
 
     render json: {avaiable: body_response.empty? } , status: :ok
+  end
+
+  def validate_cnpj_cpf
+    body_response = Customer.where(cnpj_cpf: params_to_validate[:cnpj_cpf])
+
+    render json: {avaiable: body_response.empty? }, status: :ok
   end
 
   private

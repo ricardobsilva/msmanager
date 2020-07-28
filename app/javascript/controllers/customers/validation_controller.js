@@ -13,8 +13,14 @@ export default class extends Controller{
 
   initialize() {
     this.emailTarget.addEventListener('blur', event => {
-      if (!this.emailIsEmpty(this.emailTarget)){
+      if (this.emailIsEmpty(this.emailTarget)){
         this.validateEmail()
+      }
+    })
+
+    this.cnpjCpfTarget.addEventListener('blur', event => {
+      if (this.cnpjCpfIsEmpty(this.cnpjCpfTarget)){
+        this.validateCnpjCpf()
       }
     })
 
@@ -27,9 +33,11 @@ export default class extends Controller{
   }
 
   emailIsEmpty(email){
-    if(email.value == ''){
-      return true
-    }
+    return !email.value == ''
+  }
+
+  cnpjCpfIsEmpty(cnpjCpf){
+    return !cnpjCpf.value == ''
   }
 
   validateEmail(){
@@ -56,13 +64,27 @@ export default class extends Controller{
     });
   }
 
-  validatePhoneNumber(){
-    this.phoneNumberErrorMessageTarget.innerHTML =
-    `<span id="customErrorMessage">${this.errorMessages.phoneNumber}</span>`
-  }
-
   validateCnpjCpf(){
-    this.cnpjCpfErrorMessageTarget.innerHTML =
-    `<span id="customErrorMessage">${this.errorMessages.cnpjCpf}</span>`
+    fetch('/customers/validate_cnpj_cpf', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({validate: { cnpj_cpf: this.cnpjCpfTarget.value }})
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.avaiable == false){
+        this.isFormInvalid = true
+
+        this.cnpjCpfErrorMessageTarget.innerHTML =
+        `<span id="customErrorMessage">${this.errorMessages.cnpjCpf}</span>`
+      }else{
+        this.isFormInvalid = false
+
+        this.cnpjCpfErrorMessageTarget.innerHTML = ''
+      }
+    })
   }
 }
