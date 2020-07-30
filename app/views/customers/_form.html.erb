@@ -13,6 +13,8 @@
       </header>
       <div class="card-content">
         <div class="content">
+          <hr>
+          <h5 class="title is-5">Dados do Cliente</h5>
           <div class="field">
             <%= f.label 'Nome', class: 'label' %>
             <%= f.text_field :name, class: 'input', required: true %>
@@ -47,6 +49,41 @@
                 } %>
             <span data-target='customers--validation.cnpjCpfErrorMessage'></span>
           </div>
+
+          <hr>
+          <h5 class="title is-5">Endereço do Cliente</h5>
+
+          <%= f.fields_for :address do |ff| %>
+            <div class="field">
+              <%= ff.label 'CEP', class: 'label'  %>
+              <%= ff.text_field :cep, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= ff.label 'Rua', class: 'label'  %>
+              <%= ff.text_field :street, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= ff.label 'Número', class: 'label'  %>
+              <%= ff.text_field :number, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= ff.label 'Complemento', class: 'label'  %>
+              <%= ff.text_field :complement, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= ff.label 'Bairro', class: 'label'  %>
+              <%= ff.text_field :neighborhood, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= ff.label 'Cidade', class: 'label'  %>
+              <%= ff.text_field :city, class: 'input' %>
+            </div>
+          <% end %>
         </div>
       </div>
       <footer class="card-footer">

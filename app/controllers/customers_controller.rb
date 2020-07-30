@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+    @customer.address ||= Address.new
   end
 
   def create
@@ -40,7 +41,8 @@ class CustomersController < ApplicationController
       :cnpj_cpf,
       :phone_number,
       :second_phone_number,
-      :cpf_cnpj
+      :cpf_cnpj,
+      address_attributes: [:cep, :street, :number, :complement, :neighborhood, :city]
     )
   end
 
