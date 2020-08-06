@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Customers::Index', type: :feature do
   scenario 'List customers' do
+    customer = create(:customer)
 
     visit customers_path
 
@@ -10,6 +11,7 @@ RSpec.describe 'Customers::Index', type: :feature do
     expect(page).to have_content('Nome')
     expect(page).to have_content('Email')
     expect(page).to have_content('CNPJ/CPF')
+    expect(page).to have_link('Editar', href: edit_customer_path(customer))
     expect(page).to have_current_path(customers_path)
   end
 end

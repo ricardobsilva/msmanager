@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Customers::New', type: :feature do
-  scenario 'New customer Form' do
-    customer = build(:customer)
+RSpec.describe 'Customers::Edit', type: :feature do
+  scenario 'Edit customer Form' do
+    customer = create(:customer)
 
-    visit new_customer_path
+    visit edit_customer_path(customer)
 
     within("form") do
       fill_in 'customer[name]', with: customer.name
@@ -13,6 +13,7 @@ RSpec.describe 'Customers::New', type: :feature do
       fill_in 'customer[second_phone_number]', with: customer.second_phone_number
 
       click_button 'Salvar'
+      expect(page).to have_link('Cancelar', href: customers_path)
     end
   end
 end

@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :email, :cnpj_cpf, :phone_number, presence: true
+  validates :cnpj_cpf, uniqueness: true
 
   has_one :address, dependent: :destroy
 

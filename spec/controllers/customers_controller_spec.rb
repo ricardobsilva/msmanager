@@ -69,4 +69,48 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
   end
+
+  describe '#edit' do
+    it 'assigns a customer to edit' do
+      customer = create(:customer)
+
+      get :edit, params: {id: customer.id}
+
+      expect(assigns(:customer)).to eq(customer)
+    end
+
+    it 'render edit template' do
+      customer = create(:customer)
+
+      get :edit, params: {id: customer.id}
+
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe '#update' do
+    context 'when pass valid attributes' do
+      it 'must redirect to edit view' do
+        customer = create(:customer)
+        new_address = attributes_for(:address)
+        params = attributes_for(:customer, name: 'new name', address_attributes: new_address)
+
+        put :update, params: {id: customer.id, customer: params}
+
+        expect(response).to redirect_to(edit_customer_path(customer))
+      end
+    end
+
+    context 'when pass invalid attributes' do
+      it 'must redirect to edit view' do
+        customer = create(:customer)
+        new_address = attributes_for(:address)
+        params = attributes_for(:customer, name: 'new name', address_attributes: new_address)
+
+        put :update, params: {id: customer.id, customer: params}
+
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

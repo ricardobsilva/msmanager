@@ -16,9 +16,13 @@
  */
 
 .maincontainer{
-  padding-top: 70px;
+  padding-top: 20px;
 }
 
 #customErrorMessage{
+  color: red;
+}
+
+#error_explanation{
   color: red;
 }

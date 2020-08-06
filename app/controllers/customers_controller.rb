@@ -10,6 +10,20 @@ class CustomersController < ApplicationController
     @customer.address ||= Address.new
   end
 
+  def edit
+    @customer = Customer.find(params[:id])
+  end
+
+  def update
+    @customer = Customer.find(params[:id])
+
+    if @customer.update(customer_params)
+      redirect_to edit_customer_path(@customer), notice: 'Cliente atualizado com sucesso'
+    else
+      render :edit
+    end
+  end
+
   def create
     @customer = Customer.new(customer_params)
 
@@ -42,7 +56,7 @@ class CustomersController < ApplicationController
       :phone_number,
       :second_phone_number,
       :cpf_cnpj,
-      address_attributes: [:cep, :street, :number, :complement, :neighborhood, :city]
+      address_attributes: [:id, :cep, :street, :number, :complement, :neighborhood, :city]
     )
   end
 

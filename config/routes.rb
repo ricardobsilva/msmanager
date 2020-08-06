@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :customers, only: [:index, :new, :create, :show] do
+  resources :customers do
     post "validate_email", to: 'customers#validate_email', on: :collection
     post "validate_cnpj_cpf", to: 'customers#validate_cnpj_cpf', on: :collection
   end
