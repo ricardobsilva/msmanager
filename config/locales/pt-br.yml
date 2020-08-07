@@ -1,0 +1,10 @@
+pt-br:
+  activerecord:
+    attributes:
+      customer:
+        cnpj_cpf: 'Cnpj/CPF'
+    errors:
+      messages:
+        record_invalid: 'Validation failed: %{errors}'
+        blank: 'não pode ficar vazio'
+        taken: 'já cadastrado para outro cliente'
