@@ -105,11 +105,31 @@ RSpec.describe CustomersController, type: :controller do
       it 'must redirect to edit view' do
         customer = create(:customer)
         new_address = attributes_for(:address)
-        params = attributes_for(:customer, name: 'new name', address_attributes: new_address)
+        params = attributes_for(:customer, name: nil, address_attributes: new_address)
 
         put :update, params: {id: customer.id, customer: params}
 
         expect(response).to render_template(:edit)
+      end
+    end
+  end
+
+  describe '#destroy' do
+    context 'when destroy a customer' do
+      it 'remove the customer on database' do
+        customer = create(:customer)
+
+        expect do
+          delete :destroy, params: {id: customer.id}
+        end.to change(Customer, :count).by(-1)
+      end
+
+      it 'redirect to customers list' do
+        customer = create(:customer)
+
+        delete :destroy, params: {id: customer.id}
+
+        expect(response).to redirect_to(customers_path)
       end
     end
   end

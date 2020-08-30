@@ -12,6 +12,7 @@ export default class extends Controller{
   isFormInvalid = true;
 
   initialize() {
+
     this.emailTarget.addEventListener('blur', event => {
       if (this.emailIsEmpty(this.emailTarget)){
         this.validateEmail()

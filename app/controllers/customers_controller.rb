@@ -34,6 +34,12 @@ class CustomersController < ApplicationController
     end
   end
 
+  def destroy
+    Customer.find(params[:id]).destroy!
+
+    redirect_to customers_path, notice: 'Cliente deletado com sucesso'
+  end
+
   def validate_email
     body_response = Customer.where(email: params_to_validate[:email])
 

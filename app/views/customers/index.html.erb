@@ -30,7 +30,11 @@
               <td><%= customer.email %></td>
               <td><%= customer.phone_number %></td>
               <td><%= customer.cnpj_cpf %></td>
-              <td><%= link_to 'Editar', edit_customer_path(customer) %></td>
+              <td><%= link_to 'Editar', edit_customer_path(customer) %>
+                  <%= link_to "Deletar", customer,
+                     method: :delete ,
+                     data: { confirm: "Quer mesmo deletar esse cliente?" } %>
+              </td>
             </tr>
             <% end %>
           </tbody>

@@ -1,4 +1,5 @@
 <%= form_with model: @customer, data: {
+      remote: false,
       controller: 'form' # customers--validation'#,
       #target: 'customers--validation.customerForm'
     } do |f| %>
