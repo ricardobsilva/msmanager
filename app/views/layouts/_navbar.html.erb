@@ -54,6 +54,30 @@
           <a class="button is-light">
             Log in
           </a> -->
+          <% if user_signed_in? %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Olá, <%= current_user.email %>
+              </a>
+
+              <div class="navbar-dropdown">
+                <!-- <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a> -->
+                <hr class="navbar-divider">
+                  <%= link_to 'Sair', 
+                      destroy_user_session_path, 
+                      method: :delete, 
+                      class: 'navbar-item' %>
+              </div>
+            </div> 
+          <% end %> 
         </div>
       </div>
     </div>
