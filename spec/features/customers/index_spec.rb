@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Customers::Index', type: :feature do
   scenario 'List customers' do
+    user = create(:user)
     customer = create(:customer)
 
+    sign_in user
     visit customers_path
 
     expect(page).to have_link('Cadastrar novo cliente', href: new_customer_path)

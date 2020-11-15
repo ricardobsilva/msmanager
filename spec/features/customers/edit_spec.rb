@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Customers::Edit', type: :feature do
   scenario 'Edit customer Form' do
     customer = create(:customer)
+    user = create(:user)
+    sign_in user
 
     visit edit_customer_path(customer)
 

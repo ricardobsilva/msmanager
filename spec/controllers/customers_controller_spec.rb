@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe CustomersController, type: :controller do
   describe 'when access index' do
     it 'reder index template' do
+      user = create(:user)
+      sign_in user
+
       get :index
 
       expect(response).to render_template(:index)
@@ -11,6 +14,8 @@ RSpec.describe CustomersController, type: :controller do
     it 'assigns customers' do
       customer1 = create(:customer)
       customer2 = create(:customer)
+      user = create(:user)
+      sign_in user
 
       get :index
 
@@ -20,12 +25,18 @@ RSpec.describe CustomersController, type: :controller do
 
   describe 'when access new' do
     it 'render new template' do
+      user = create(:user)
+      sign_in user
+
       get :new
 
       expect(response).to render_template(:new)
     end
 
     it 'assigns new customer' do
+      user = create(:user)
+      sign_in user
+
       get :new
 
       expect(assigns(:customer)).to be_a_new(Customer)
@@ -35,6 +46,8 @@ RSpec.describe CustomersController, type: :controller do
   describe '#create' do
     context 'with valid atributes' do
       it 'create a new customer' do
+        user = create(:user)
+        sign_in user
         customer_params = attributes_for(:customer)
 
         post :create, params: { customer: customer_params }
@@ -43,6 +56,8 @@ RSpec.describe CustomersController, type: :controller do
       end
 
       it 'redirect to list customers' do
+        user = create(:user)
+        sign_in user
         customer_params = attributes_for(:customer)
 
         post :create, params: { customer: customer_params }
@@ -61,6 +76,8 @@ RSpec.describe CustomersController, type: :controller do
       end
 
       it 'redirect to new template' do
+        user = create(:user)
+        sign_in user
         invalid_customer_params = attributes_for(:customer, name: nil)
 
         post :create, params: { customer: invalid_customer_params }
@@ -73,6 +90,8 @@ RSpec.describe CustomersController, type: :controller do
   describe '#edit' do
     it 'assigns a customer to edit' do
       customer = create(:customer)
+      user = create(:user)
+      sign_in user
 
       get :edit, params: {id: customer.id}
 
@@ -81,6 +100,8 @@ RSpec.describe CustomersController, type: :controller do
 
     it 'render edit template' do
       customer = create(:customer)
+      user = create(:user)
+      sign_in user
 
       get :edit, params: {id: customer.id}
 
@@ -92,6 +113,8 @@ RSpec.describe CustomersController, type: :controller do
     context 'when pass valid attributes' do
       it 'must redirect to edit view' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
         new_address = attributes_for(:address)
         params = attributes_for(:customer, name: 'new name', address_attributes: new_address)
 
@@ -104,6 +127,8 @@ RSpec.describe CustomersController, type: :controller do
     context 'when pass invalid attributes' do
       it 'must redirect to edit view' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
         new_address = attributes_for(:address)
         params = attributes_for(:customer, name: nil, address_attributes: new_address)
 
@@ -118,6 +143,8 @@ RSpec.describe CustomersController, type: :controller do
     context 'when destroy a customer' do
       it 'remove the customer on database' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
 
         expect do
           delete :destroy, params: {id: customer.id}
@@ -125,6 +152,8 @@ RSpec.describe CustomersController, type: :controller do
       end
 
       it 'redirect to customers list' do
+        user = create(:user)
+        sign_in user
         customer = create(:customer)
 
         delete :destroy, params: {id: customer.id}

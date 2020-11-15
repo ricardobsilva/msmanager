@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe CustomersController, type: :request do
-
   describe "GET #index" do
     it "returns http success" do
+      user = create(:user)
+      sign_in user
       get customers_path
 
       expect(response).to have_http_status(:ok)
@@ -12,6 +13,8 @@ RSpec.describe CustomersController, type: :request do
 
   describe "GET #new" do
     it "returns http success" do
+      user = create(:user)
+      sign_in user
       get new_customer_path
 
       expect(response).to have_http_status(:ok)
@@ -22,6 +25,8 @@ RSpec.describe CustomersController, type: :request do
     context 'when a customer was created' do
       it "returns 302 status code" do
         customer_params = attributes_for(:customer)
+        user = create(:user)
+        sign_in user
 
         post customers_path, params: { customer: customer_params }, headers: {}
 
@@ -34,14 +39,18 @@ RSpec.describe CustomersController, type: :request do
     context 'when find some email' do
       it 'must return 200 http status code' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_email", params: {validate: {email: customer.email}}
 
         expect(response).to have_http_status(:ok)
       end
 
-      it  'must return a body response with following attributes' do
+      it 'must return a body response with following attributes' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_email", params: {validate: {email: customer.email}}
 
@@ -53,14 +62,18 @@ RSpec.describe CustomersController, type: :request do
     context 'when didnt find some email' do
       it 'must return 200 http status code' do
         invalid_email = 'invalid'
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_email", params: {validate: {email: invalid_email}}
 
         expect(response).to have_http_status(:ok)
       end
 
-      it  'must return a body response with following attributes' do
+      it 'must return a body response with following attributes' do
         invalid_email = 'invalid'
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_email", params: {validate: {email: invalid_email}}
 
@@ -74,14 +87,18 @@ RSpec.describe CustomersController, type: :request do
     context 'when find some cnpj_cpf' do
       it 'must return 200 http status code' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_cnpj_cpf", params: {validate: {cnpj_cpf: customer.cnpj_cpf}}
 
         expect(response).to have_http_status(:ok)
       end
 
-      it  'must return a body response with following attributes' do
+      it 'must return a body response with following attributes' do
         customer = create(:customer)
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_cnpj_cpf", params: {validate: {cnpj_cpf: customer.cnpj_cpf}}
 
@@ -93,14 +110,18 @@ RSpec.describe CustomersController, type: :request do
     context "when don't find some cnpj_cpf" do
       it 'must return 200 http status code' do
         invalid_cnpj_cpf = 'invalid'
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_cnpj_cpf", params: {validate: {cnpj_cpf: invalid_cnpj_cpf}}
 
         expect(response).to have_http_status(:ok)
       end
 
-      it  'must return a body response with following attributes' do
+      it 'must return a body response with following attributes' do
         invalid_cnpj_cpf = 'invalid'
+        user = create(:user)
+        sign_in user
 
         post "/customers/validate_cnpj_cpf", params: {validate: {cnpj_cpf: invalid_cnpj_cpf}}
 
