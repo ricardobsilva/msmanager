@@ -1,0 +1,46 @@
+<%= flash[:notice] %>
+<div class="columns">
+  <div class="column is-multiline is-10 is-offset-1">
+    <div class="column">
+      <div class="level">
+        <h1 class="title level-left">Ordens de Serviço</h1>
+        <div class="level-right">
+          <%= link_to 'Cadastrar Ordem de Serviço', new_service_order_path,
+          class: 'button is-success is-light is-outlined' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <table class="table is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Problema</th>
+              <th>Cliente</th>
+              <th>Data/Hora de Criação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @service_orders.each do |service_order|%>
+            <tr>
+              <td><%= service_order.protocol_number %></td>
+              <td><%= service_order.issue_reported %></td>
+              <td><%= service_order.customer.name %></td>
+              <td><%= service_order.created_at.strftime('%d/%m/%Y às %H:%M') %></td>
+              <td><%= link_to 'Imprimir', print_service_order_path(service_order) %>
+                  <%= link_to 'Editar', edit_service_order_path(service_order) %>
+                  <%= link_to "Deletar", service_order_path(service_order),
+                     method: :delete ,
+                     data: { confirm: "Quer mesmo deletar essa Ordem de Serviço?" } %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
