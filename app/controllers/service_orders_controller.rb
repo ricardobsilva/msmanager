@@ -7,7 +7,7 @@ class ServiceOrdersController < ApplicationController
   end
 
   def new
-    @service_order = ServiceOrder.new
+    @service_order = ServiceOrder.new(protocol_number: "#{rand(200..900)}#{rand(700..900)}")
   end
 
   def edit
