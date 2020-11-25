@@ -1,6 +1,6 @@
 class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_customer, only: :new
+  before_action :set_customer, only: [:new, :edit]
 
   def index
     @service_orders = ServiceOrder.all
@@ -10,9 +10,13 @@ class ServiceOrdersController < ApplicationController
     @service_order = ServiceOrder.new
   end
 
+  def edit
+    @service_order = ServiceOrder.find(params[:id])
+  end
+
   def create
     @service_order = ServiceOrder.new(service_order_params)
-    
+
     if @service_order.save
       redirect_to service_order_path(@service_order), notice: 'Ordem de Serviço criada com sucesso'
     else
