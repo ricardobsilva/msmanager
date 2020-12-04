@@ -1,0 +1,66 @@
+<div class="columns is-centered">
+  <div class="column is-7">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title is-centered">
+          Ordem de Serviço <%= @service_order.protocol_number %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <article class="panel is-primary">
+            <p class="panel-heading">
+              Cliente
+            </p>
+          </article>
+
+          <div class="field">
+            <%= label(:customer, 'Nome', class: 'label') %>
+            <%= @service_order.customer.name %>
+          </div>
+
+          <div class="field">
+            <%= label(:address, 'Endereço', class: 'label') %>
+            <%= @service_order.customer.address&.street %> /
+            <%= @service_order.customer.address&.number %> 
+          </div>
+
+          <div class="field">
+            <%= label(:address, 'CEP', class: 'label') %>
+            <%= @service_order.customer.address&.cep %>
+          </div>
+          
+          <article class="panel is-primary">
+            <p class="panel-heading">
+              Defeito / Reclamação
+            </p>
+          </article>
+          
+          <div class="field">
+            <%= label(:issue_reported, 'Descrição', class: 'label') %>
+            <%= @service_order.issue_reported %>
+          </div>
+
+          <div class="field">
+            <%= label(:observation, 'Observações', class: 'label') %>
+            <%= @service_order.observation %>
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <%= link_to 'Ordens de Serviço', service_orders_path, 
+              class: 'button is-default is-focused is-fullwidth' %>
+        </div>
+        <div class="card-footer-item">
+          <%= link_to 'Editar', edit_service_order_path(@service_order), 
+              class: 'button is-primary is-focused is-fullwidth' %>
+        </div>
+        <div class="card-footer-item">
+          <%= link_to 'Imprimir', '#', 
+              class: 'button is-warning is-focused is-fullwidth' %>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

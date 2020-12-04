@@ -14,6 +14,16 @@ class ServiceOrdersController < ApplicationController
     @service_order = ServiceOrder.find(params[:id])
   end
 
+  def update
+    @service_order = ServiceOrder.find(params[:id])
+
+    if @service_order.update(service_order_params.except(:protocol_number))
+      redirect_to service_order_path(@service_order)
+    else
+      render :edit
+    end
+  end
+
   def create
     @service_order = ServiceOrder.new(service_order_params)
 

@@ -67,4 +67,34 @@ RSpec.describe ServiceOrdersController, type: :controller do
       expect(assigns(:service_order)).to eq(service_order)
     end
   end
+
+  describe 'PUT #update' do
+    context 'when update a service order' do
+      it 'redirect to show' do
+        user = create(:user)
+        customer = create(:customer)
+        service_order = create(:service_order, customer: customer)
+        params = attributes_for(:service_order)
+        sign_in user
+
+        put :update, params: { id: service_order.id, service_order: params}
+
+        expect(response).to redirect_to(service_order_path(service_order))
+      end
+    end
+
+    context 'when do not update a service order' do
+      it 'render edit template' do
+        user = create(:user)
+        customer = create(:customer)
+        service_order = create(:service_order, customer: customer)
+        params = attributes_for(:service_order, issue_reported: nil)
+        sign_in user
+
+        put :update, params: { id: service_order.id, service_order: params}
+
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end
