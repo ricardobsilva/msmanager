@@ -4,6 +4,11 @@ pt-br:
       customer:
         cnpj_cpf: 'Cnpj/CPF'
     errors:
+      models:
+        vehicle:
+          attributes:
+            customer:
+              required: 'É necessário dizer a qual Cliente esse veículo pertence'
       messages:
         record_invalid: 'Validation failed: %{errors}'
         blank: 'não pode ficar vazio'

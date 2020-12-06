@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :service_orders do
     get 'print', to: 'print_service_orders#print_service_order', on: :member
   end
+  resources :vehicles, except: [:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
