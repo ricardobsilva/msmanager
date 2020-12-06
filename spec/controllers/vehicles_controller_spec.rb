@@ -20,4 +20,43 @@ RSpec.describe VehiclesController, type: :controller do
       expect(assigns(:vehicle)).to be_a_new(Vehicle)
     end
   end
+
+  describe '#create' do
+    context 'with valid atributes' do
+      it 'create a new customer' do
+        user = create(:user)
+        customer = create(:customer)
+        sign_in user
+        vehicle_params = attributes_for(:vehicle, customer_id: customer.id)
+
+        post :create, params: { vehicle: vehicle_params }
+
+        expect(Vehicle.count).to eq(1)
+      end
+
+      it 'redirect to list customers' do
+        user = create(:user)
+        customer = create(:customer)
+        sign_in user
+        vehicle_params = attributes_for(:vehicle, customer_id: customer.id)
+
+        post :create, params: { vehicle: vehicle_params }
+
+        expect(response).to redirect_to vehicle_path(Vehicle.last)
+      end
+    end
+
+    context 'with invalid atributes' do
+      it 'render new template' do
+        user = create(:user)
+        customer = create(:customer)
+        sign_in user
+        vehicle_params = attributes_for(:vehicle, customer_id: customer.id, plate: nil)
+
+        post :create, params: { vehicle: vehicle_params }
+
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end
