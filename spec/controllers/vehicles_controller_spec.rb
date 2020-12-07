@@ -42,7 +42,7 @@ RSpec.describe VehiclesController, type: :controller do
 
         post :create, params: { vehicle: vehicle_params }
 
-        expect(response).to redirect_to vehicle_path(Vehicle.last)
+        expect(response).to redirect_to edit_vehicle_path(Vehicle.last)
       end
     end
 
@@ -56,6 +56,22 @@ RSpec.describe VehiclesController, type: :controller do
         post :create, params: { vehicle: vehicle_params }
 
         expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe '#update' do
+    context 'with invalid atributes' do
+      it 'must return to edit page' do
+        user = create(:user)
+        customer = create(:customer)
+        vehicle = create(:vehicle, customer: customer)
+        sign_in user
+        vehicle_params = attributes_for(:vehicle, customer_id: customer.id)
+
+        put :update, params: { id: vehicle.id, vehicle: vehicle_params }
+
+        expect(response).to redirect_to edit_vehicle_path(vehicle)
       end
     end
   end
