@@ -75,4 +75,17 @@ RSpec.describe VehiclesController, type: :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    it 'must return to edit page' do
+      user = create(:user)
+      customer = create(:customer)
+      vehicle = create(:vehicle, customer: customer)
+      sign_in user
+
+      put :destroy, params: { id: vehicle.id }
+
+      expect(response).to redirect_to vehicles_path
+    end
+  end
 end

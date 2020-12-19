@@ -1,0 +1,49 @@
+<%= flash[:notice] %>
+<div class="columns">
+  <div class="column is-multiline is-12 is-offset-0">
+    <div class="column">
+      <div class="level">
+        <h1 class="title level-left">Veículos</h1>
+        <div class="level-right">
+          <%= link_to 'Cadastrar novo veículo', new_vehicle_path,
+          class: 'button is-success is-light is-outlined' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <table class="table is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Ano</th>
+              <th>Cliente</th>
+              <th>Número do Chassi</th>
+              <th>Modelo</th>
+              <th>Marca</th>
+              <th>Ações<th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @vehicles.each do |vehicle|%>
+            <tr>
+              <td><%= vehicle.plate %></td>
+              <td><%= vehicle.year %></td>
+              <td><%= vehicle.customer.name %></td>
+              <td><%= vehicle.chassis %></td>
+              <td><%= vehicle.model %></td>
+              <td><%= vehicle.brand %></td>
+              <td><%= link_to 'Editar', edit_vehicle_path(vehicle) %>
+                  <%= link_to "Deletar", vehicle,
+                     method: :delete ,
+                     data: { confirm: "Quer mesmo deletar esse veículo?" } %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

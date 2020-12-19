@@ -11,6 +11,10 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def index
+    @vehicles = Vehicle.all
+  end
+
   def new
     @vehicle = Vehicle.new
   end
@@ -27,6 +31,11 @@ class VehiclesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    Vehicle.find(params[:id]).destroy
+    redirect_to vehicles_path, notice: 'Veículo removido com sucesso'
   end
 
   private
