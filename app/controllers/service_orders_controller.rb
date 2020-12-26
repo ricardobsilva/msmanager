@@ -39,6 +39,13 @@ class ServiceOrdersController < ApplicationController
   end
 
   def print_service_order
+    @service_order = ServiceOrder.last
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render template: "service_orders/print_service_order" , pdf: 'Foo'  # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def set_customer

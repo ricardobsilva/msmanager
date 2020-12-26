@@ -30,7 +30,12 @@
               <td><%= service_order.issue_reported %></td>
               <td><%= service_order.customer.name %></td>
               <td><%= service_order.created_at.strftime('%d/%m/%Y às %H:%M') %></td>
-              <td><%= link_to 'Imprimir', print_service_order_path(service_order) %>
+              <td><%= link_to 'Imprimir', 
+                      print_service_order_path(service_order),
+                      controller: :service_orders,
+                      target: :_blank,
+                      action: :print_service_order, 
+                      format: :pdf %>
                   <%= link_to 'Show', service_order_path(service_order) %>
                   <%= link_to 'Editar', edit_service_order_path(service_order) %>
                   <%= link_to "Deletar", service_order_path(service_order),

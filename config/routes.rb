@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     post "validate_cnpj_cpf", to: 'customers#validate_cnpj_cpf', on: :collection
   end
   resources :service_orders do
-    get 'print', to: 'print_service_orders#print_service_order', on: :member
+    get 'print', to: 'service_orders#print_service_order', on: :member, defaults: {format: :pdf}
   end
   resources :vehicles
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
