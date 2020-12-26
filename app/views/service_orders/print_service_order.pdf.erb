@@ -22,15 +22,16 @@
       </div>
         <article class="message ">
           <div class="message-body">
-            <p><strong>Cliente:</strong> <%=@service_order.customer.name%></p> 
-            <p><strong>Endereço:</strong> <%=@service_order.customer.address.street%></p> 
-            <p><strong>Telefone:</strong> <%=@service_order.customer.phone_number%></p>
-            <p><strong>Entrada</strong></p> 
-            <p><strong>Veículo/Ano</strong></p>
-            <p><strong>Marca</strong></p> 
-            <p><strong>Placa</strong></p> 
-            <p><strong>N Chassi</strong></p> 
-            <p><strong>Kilometragem</strong></p> 
+            <p><strong>Cliente:</strong> <%=@service_order.vehicle.customer.name%></p> 
+            <p><strong>Endereço:</strong> <%=@service_order.vehicle.customer.address.street%></p> 
+            <p><strong>Telefone:</strong> <%=@service_order.vehicle.customer.phone_number%></p>
+            <p><strong>Modelo/Ano:</strong>
+              <%=@service_order.vehicle.model%> / <%=@service_order.vehicle.year%>
+            </p>
+            <p><strong>Marca:</strong> <%=@service_order.vehicle.brand%></p> 
+            <p><strong>Placa:</strong> <%=@service_order.vehicle.plate%></p> 
+            <p><strong>N Chassi:</strong> <%=@service_order.vehicle.chassis%></p> 
+            <p><strong>Kilometragem:</strong></p> 
           </div>
         </article>
     </article>

@@ -13,8 +13,9 @@ RSpec.describe ServiceOrdersController, type: :controller do
 
     it 'assigns service orders' do
       customer = create(:customer)
-      service_order1 = create(:service_order, customer: customer)
-      service_order2 = create(:service_order, customer: customer)
+      vehicle = create(:vehicle, customer: customer)
+      service_order1 = create(:service_order, vehicle: vehicle)
+      service_order2 = create(:service_order, vehicle: vehicle)
       user = create(:user)
       sign_in user
 
@@ -48,7 +49,8 @@ RSpec.describe ServiceOrdersController, type: :controller do
     it 'render EDIT template' do
       user = create(:user)
       customer = create(:customer)
-      service_order = create(:service_order, customer: customer)
+      vehicle = create(:vehicle, customer: customer)
+      service_order = create(:service_order, vehicle: vehicle)
       sign_in user
 
       get :edit, params: { id: service_order.id }
@@ -59,7 +61,8 @@ RSpec.describe ServiceOrdersController, type: :controller do
     it 'assigns a service order' do
       user = create(:user)
       customer = create(:customer)
-      service_order = create(:service_order, customer: customer)
+      vehicle = create(:vehicle, customer: customer)
+      service_order = create(:service_order, vehicle: vehicle)
       sign_in user
 
       get :edit, params: { id: service_order.id }
@@ -73,7 +76,8 @@ RSpec.describe ServiceOrdersController, type: :controller do
       it 'redirect to show' do
         user = create(:user)
         customer = create(:customer)
-        service_order = create(:service_order, customer: customer)
+        vehicle = create(:vehicle, customer: customer)
+        service_order = create(:service_order, vehicle: vehicle)
         params = attributes_for(:service_order)
         sign_in user
 
@@ -87,7 +91,8 @@ RSpec.describe ServiceOrdersController, type: :controller do
       it 'render edit template' do
         user = create(:user)
         customer = create(:customer)
-        service_order = create(:service_order, customer: customer)
+        vehicle = create(:vehicle, customer: customer)
+        service_order = create(:service_order, vehicle: vehicle)
         params = attributes_for(:service_order, issue_reported: nil)
         sign_in user
 

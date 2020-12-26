@@ -3,6 +3,6 @@ FactoryBot.define do
     protocol_number { "MyString" }
     issue_reported { "MyText" }
     observation { "MyText" }
-    customer { nil }
+    vehicle { nil }
   end
 end

@@ -10,24 +10,49 @@
         <div class="content">
           <article class="panel is-primary">
             <p class="panel-heading">
-              Cliente
+              Cliente / Veículo
             </p>
           </article>
 
           <div class="field">
             <%= label(:customer, 'Nome', class: 'label') %>
-            <%= @service_order.customer.name %>
+            <%= @service_order.vehicle.customer.name %>
           </div>
 
           <div class="field">
             <%= label(:address, 'Endereço', class: 'label') %>
-            <%= @service_order.customer.address&.street %> /
-            <%= @service_order.customer.address&.number %> 
+            <%= @service_order.vehicle.customer.address&.street %> /
+            <%= @service_order.vehicle.customer.address&.number %> 
           </div>
 
           <div class="field">
             <%= label(:address, 'CEP', class: 'label') %>
-            <%= @service_order.customer.address&.cep %>
+            <%= @service_order.vehicle.customer.address&.cep %>
+          </div>
+
+          <div class="field">
+            <%= label(:plate, 'Placa', class: 'label') %>
+            <%= @service_order.vehicle.plate %>
+          </div>
+
+          <div class="field">
+            <%= label(:year_model, 'Modelo/Ano', class: 'label') %>
+            <%= @service_order.vehicle.model %> / <%= @service_order.vehicle.year %>
+          </div>
+
+          <div class="field">
+            <%= label(:brand, 'Marca', class: 'label') %>
+            <%= @service_order.vehicle.brand %>
+          </div>
+
+          <div class="field">
+            <%= label(:chassis, 'Chassi', class: 'label') %>
+            <%= @service_order.vehicle.chassis %>
+          </div>
+
+          <div class="field">
+            <%= label(:issue_reported, 'Descrição', class: 'label') %>
+            <%= @service_order.issue_reported %>
           </div>
           
           <article class="panel is-primary">
@@ -57,7 +82,7 @@
               class: 'button is-primary is-focused is-fullwidth' %>
         </div>
         <div class="card-footer-item">
-          <%= link_to 'Imprimir', '#', 
+          <%= link_to 'Imprimir', print_service_order_path(@service_order.vehicle), target: :_blank,
               class: 'button is-warning is-focused is-fullwidth' %>
         </div>
       </footer>

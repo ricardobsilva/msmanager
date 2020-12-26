@@ -28,10 +28,9 @@
             </div>
 
             <div class="field">
-              <%= f.label 'Cliente', class: 'label' %>
-              <%= f.collection_select :customer_id, 
-                  @customers, :id, :name, 
-                  {prompt: 'Selecione um Cliente'}, 
+              <%= f.label 'Veículo', class: 'label' %>
+              <%= f.select :vehicle_id, @vehicles,
+                  {prompt: 'Selecione um Veículo'}, 
                   {class: 'input', multiple: false, required: true}%>
             </div>
 

@@ -4,7 +4,7 @@ class CreateServiceOrders < ActiveRecord::Migration[6.0]
       t.string :protocol_number
       t.text :issue_reported
       t.text :observation
-      t.references :customer, null: false, foreign_key: true
+      t.references :vehicle, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -1,6 +1,6 @@
 class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_customer, only: [:new, :edit]
+  before_action :set_vehicle, only: [:new, :edit]
 
   def index
     @service_orders = ServiceOrder.all
@@ -39,27 +39,30 @@ class ServiceOrdersController < ApplicationController
   end
 
   def print_service_order
-    @service_order = ServiceOrder.last
+    @service_order = ServiceOrder.find(params[:id])
+
     respond_to do |format|
       format.html
       format.pdf do
-        render template: "service_orders/print_service_order" , pdf: 'Foo'  # Excluding ".pdf" extension.
+        render template: 'service_orders/print_service_order', pdf: 'OS'  # Excluding ".pdf" extension.
       end
     end
   end
 
-  def set_customer
-    @customers = Customer.all
-  end
-
   private
+
+  def set_vehicle
+    @vehicles = Vehicle.all.collect do |vehicle|
+      ["#{vehicle.plate} - #{vehicle.customer.name} (#{vehicle.customer.cnpj_cpf})", vehicle.id]
+    end
+  end
 
   def service_order_params
     params.require(:service_order).permit(
       :protocol_number,
       :issue_reported,
       :observation,
-      :customer_id
+      :vehicle_id
     )
   end
 end

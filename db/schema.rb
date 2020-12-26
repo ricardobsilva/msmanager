@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2020_12_06_040813) do
     t.string "protocol_number"
     t.text "issue_reported"
     t.text "observation"
-    t.integer "customer_id", null: false
+    t.integer "vehicle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_service_orders_on_customer_id"
+    t.index ["vehicle_id"], name: "index_service_orders_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +70,6 @@ ActiveRecord::Schema.define(version: 2020_12_06_040813) do
   end
 
   add_foreign_key "addresses", "customers"
-  add_foreign_key "service_orders", "customers"
+  add_foreign_key "service_orders", "vehicles"
   add_foreign_key "vehicles", "customers"
 end

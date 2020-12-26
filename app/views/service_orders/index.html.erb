@@ -28,10 +28,10 @@
             <tr>
               <td><%= service_order.protocol_number %></td>
               <td><%= service_order.issue_reported %></td>
-              <td><%= service_order.customer.name %></td>
+              <td><%= service_order.vehicle.customer.name %></td>
               <td><%= service_order.created_at.strftime('%d/%m/%Y às %H:%M') %></td>
               <td><%= link_to 'Imprimir', 
-                      print_service_order_path(service_order),
+                      print_service_order_path(service_order.id),
                       controller: :service_orders,
                       target: :_blank,
                       action: :print_service_order, 
