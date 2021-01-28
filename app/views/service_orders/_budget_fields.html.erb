@@ -1,0 +1,33 @@
+<div class='nested-fields'>
+  <div class='form-group'>
+    <%= form.hidden_field :_destroy %>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <%= form.label 'Item', class: 'label' %>
+          <%= form.select :service_id, @services,
+              {prompt: 'Serviço'}, 
+              {class: 'input', multiple: false} %>
+        </div>
+      </div>
+      
+      <div class="column">
+        <div class="field">
+          <%= form.label 'Valor', class: 'label' %>
+          <%= form.text_field :price, 
+            placeholder: '0.00',
+            class: 'input', multiple: false%>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+            <%= form.label 'Ação', class: 'label' %>
+            <%= link_to "Remover", "#",
+                data: { action: "click->nested-form#remove_association" },
+                class: 'button is-warning is-outlined is-fullwidth' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

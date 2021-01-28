@@ -1,17 +1,21 @@
 class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_vehicle, only: [:new, :edit]
+  before_action :set_vehicle, except: :index
+  before_action :set_service, except: :index
+  before_action :set_budgets, except: :index
 
   def index
-    @service_orders = ServiceOrder.all
+    @service_orders = ServiceOrder.includes(:vehicle).order(created_at: :asc)
   end
 
   def new
     @service_order = ServiceOrder.new(protocol_number: "#{rand(200..900)}#{rand(700..900)}")
+    @budget ||= Budget.new
   end
 
   def edit
     @service_order = ServiceOrder.find(params[:id])
+    @budget ||= Budget.new
   end
 
   def update
@@ -57,12 +61,21 @@ class ServiceOrdersController < ApplicationController
     end
   end
 
+  def set_service
+    @services = Service.all.collect { |s| [s.name, s.id] }
+  end
+
+  def set_budgets
+    @budgets = ServiceOrder.find(params[:id]).budgets.includes(:service)
+  end
+
   def service_order_params
     params.require(:service_order).permit(
       :protocol_number,
       :issue_reported,
       :observation,
-      :vehicle_id
+      :vehicle_id,
+      budgets_attributes: [:id, :_destroy, :service_id, :price]
     )
   end
 end

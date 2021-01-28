@@ -1,6 +1,6 @@
 <%= form_with model: @service_order, data: {remote: false } do |f| %>
   <div class="columns is-centered">
-    <div class="column is-7">
+    <div class="column is-9">
       <div class="card">
         <header class="card-header">
           <p class="card-header-title is-centered">
@@ -46,6 +46,32 @@
                   required: true,
                   rows: 5, cols: 25 %>
             </div>
+
+            <div data-controller="nested-form">
+              <hr>
+              <div class="columns">
+                <div class="column">
+                  <h5 class="title">Serviços a executar</h5>
+                </div>
+              </div>
+              
+
+              <template data-target='nested-form.template'>
+                <%= f.fields_for :budgets, @budget, child_index: 'TEMPLATE_RECORD' do |ff| %>
+                  <%= render 'budget_fields', form: ff %>
+                <% end %>
+              </template>
+
+              <%= f.fields_for :budgets do |ff| %>
+                <%= render 'budget_fields', form: ff %>
+              <% end %>
+
+              <div data-target="nested-form.add_item" class="btn-add-item">
+                <%= link_to "Adicionar Item", "#", 
+                  data: { action: "nested-form#add_association" },
+                  class: 'button is-small is-success is-outlined is-fullwidth' %>
+              </div>
+            </div>
           </div>
         </div>
         <footer class="card-footer">
@@ -53,13 +79,15 @@
             <%= link_to 'Cancelar', service_orders_path, 
                 class: 'button is-danger is-focused is-fullwidth'%>
           </div>
+          <% total = 10 %>
           <div class="card-footer-item">
-            <%= f.submit 'Salvar', class: 'button is-success is-focused is-fullwidth'%>
+            <%= f.submit 'Salvar', class: 'button is-success is-focused is-fullwidth' %>
           </div>
         </footer>
       </div>
     </div>
   </div>
+</div>
 <% end %>
 
 

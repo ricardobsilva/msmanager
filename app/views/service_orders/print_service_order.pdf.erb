@@ -58,15 +58,32 @@
       </article>
     </article>
 
-    <article class="message is-info">
-      <div class="message-header">
-        <p>Serviços a realizar</p>
-      </div>
-      <article class="message">
-        <div class="message-body">
-          <p><%#=@service_order.observation%></p> 
-        </div>
-      </article>
-    </article>
+    <table class="table is-narrow" style="width: 100%">
+      <thead>
+        <th style="background-color: #3e8ed0; color: white">Serviço</th>
+        <th style="width: 20%; color: white; background-color: #3e8ed0">Quantidade</th>
+      </thead>
+      <tbody>
+        <% @budgets.each do |budget|%>
+          <tr>
+            <td><%= budget.service.name %></td>
+            <td style="text-align: center"><%= budget.amount %></td>
+          </tr>
+        <% end %> 
+      </tbody>
+    </table>
+
+    <table class="table is-narrow" style="float: right; width: 50%">
+      <thead>
+        <th style="background-color: #3e8ed0; color: white">Totais</th>
+        <th style="background-color: #3e8ed0; color: white"></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mão de Obra</td>
+          <td><%= @budgets.sum(:amount) %></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

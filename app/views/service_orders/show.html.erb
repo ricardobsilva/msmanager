@@ -1,5 +1,5 @@
 <div class="columns is-centered">
-  <div class="column is-7">
+  <div class="column is-12">
     <div class="card">
       <header class="card-header">
         <p class="card-header-title is-centered">
@@ -8,67 +8,100 @@
       </header>
       <div class="card-content">
         <div class="content">
-          <article class="panel is-primary">
-            <p class="panel-heading">
-              Cliente / Veículo
-            </p>
-          </article>
+          <div class='columns'>
+            <div class='column'>
+              <article class="panel is-primary">
+                <p class="panel-heading">
+                  Cliente / Veículo
+                </p>
+              </article>
 
-          <div class="field">
-            <%= label(:customer, 'Nome', class: 'label') %>
-            <%= @service_order.vehicle.customer.name %>
-          </div>
+              <div class='columns'>
+                <div class='column'>
+                  <div class="field">
+                    <%= label(:customer, 'Nome', class: 'label') %>
+                    <%= @service_order.vehicle.customer.name %>
+                  </div>
 
-          <div class="field">
-            <%= label(:address, 'Endereço', class: 'label') %>
-            <%= @service_order.vehicle.customer.address&.street %> /
-            <%= @service_order.vehicle.customer.address&.number %> 
-          </div>
+                  <div class="field">
+                    <%= label(:address, 'Endereço', class: 'label') %>
+                    <%= @service_order.vehicle.customer.address&.street %> 
+                  </div>
+                  <div class="field">
+                    <%= label(:number, 'Número', class: 'label') %>
+                    <%= @service_order.vehicle.customer.address&.number %> 
+                  </div>
+                  <div class="field">
+                    <%= label(:address, 'CEP', class: 'label') %>
+                    <%= @service_order.vehicle.customer.address&.cep %>
+                  </div>
+                </div>
+                <div class='column'>
+                  <div class="field">
+                    <%= label(:plate, 'Placa', class: 'label') %>
+                    <%= @service_order.vehicle.plate %>
+                  </div>
 
-          <div class="field">
-            <%= label(:address, 'CEP', class: 'label') %>
-            <%= @service_order.vehicle.customer.address&.cep %>
-          </div>
+                  <div class="field">
+                    <%= label(:year_model, 'Modelo/Ano', class: 'label') %>
+                    <%= @service_order.vehicle.model %> / <%= @service_order.vehicle.year %>
+                  </div>
 
-          <div class="field">
-            <%= label(:plate, 'Placa', class: 'label') %>
-            <%= @service_order.vehicle.plate %>
-          </div>
+                  <div class="field">
+                    <%= label(:brand, 'Marca', class: 'label') %>
+                    <%= @service_order.vehicle.brand %>
+                  </div>
 
-          <div class="field">
-            <%= label(:year_model, 'Modelo/Ano', class: 'label') %>
-            <%= @service_order.vehicle.model %> / <%= @service_order.vehicle.year %>
-          </div>
+                  <div class="field">
+                    <%= label(:chassis, 'Chassi', class: 'label') %>
+                    <%= @service_order.vehicle.chassis %>
+                  </div>
+                </div>
+              </div>
 
-          <div class="field">
-            <%= label(:brand, 'Marca', class: 'label') %>
-            <%= @service_order.vehicle.brand %>
-          </div>
+              <article class="panel is-primary">
+                <p class="panel-heading">
+                  Defeito / Reclamação
+                </p>
+              </article>
+              <div class="field">
+                <%= label(:issue_reported, 'Descrição', class: 'label') %>
+                <%= @service_order.issue_reported %>
+              </div>
 
-          <div class="field">
-            <%= label(:chassis, 'Chassi', class: 'label') %>
-            <%= @service_order.vehicle.chassis %>
-          </div>
+              <div class="field">
+                <%= label(:observation, 'Observações', class: 'label') %>
+                <%= @service_order.observation %>
+              </div>
+            </div>
+            <div class='column'>
+              <article class="panel is-primary">
+                <p class="panel-heading">
+                  Serviços
+                </p>
+              </article>
 
-          <div class="field">
-            <%= label(:issue_reported, 'Descrição', class: 'label') %>
-            <%= @service_order.issue_reported %>
-          </div>
-          
-          <article class="panel is-primary">
-            <p class="panel-heading">
-              Defeito / Reclamação
-            </p>
-          </article>
-          
-          <div class="field">
-            <%= label(:issue_reported, 'Descrição', class: 'label') %>
-            <%= @service_order.issue_reported %>
-          </div>
-
-          <div class="field">
-            <%= label(:observation, 'Observações', class: 'label') %>
-            <%= @service_order.observation %>
+              <div class="field">
+                <table class="table is-striped">
+                  <thead>
+                    <tr>
+                      <th>Serviço</th>
+                      <th>Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @budgets.each do |budget| %>
+                      <tr>
+                        <td><%= budget.service.name %></td>
+                        <td><%= budget.price %></td>
+                      </th>
+                    <% end %>
+                  </tbody>
+                </table>
+                <hr>
+                <div class='is-pulled-right'>R$ <%= @budgets.sum(:price) %></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
