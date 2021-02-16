@@ -99,7 +99,10 @@
                   </tbody>
                 </table>
                 <hr>
-                <div class='is-pulled-right'>R$ <%= @budgets.sum(:price) %></div>
+                <div class='field is-pulled-right'>
+                  <label>Total:</label>
+                  R$ <%= @budgets.sum(:price) %>
+                </div>
               </div>
             </div>
           </div>
@@ -115,7 +118,7 @@
               class: 'button is-primary is-focused is-fullwidth' %>
         </div>
         <div class="card-footer-item">
-          <%= link_to 'Imprimir', print_service_order_path(@service_order.vehicle), target: :_blank,
+          <%= link_to 'Imprimir', print_service_order_path(@service_order), target: :_blank,
               class: 'button is-warning is-focused is-fullwidth' %>
         </div>
       </footer>

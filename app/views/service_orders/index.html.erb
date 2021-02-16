@@ -30,16 +30,20 @@
               <td><%= service_order.issue_reported %></td>
               <td><%= service_order.vehicle.customer.name %></td>
               <td><%= service_order.created_at.strftime('%d/%m/%Y às %H:%M') %></td>
-              <td><%= link_to 'Imprimir', 
+              <td class='field has-addons'>
+                  <%= link_to 'Imprimir', 
                       print_service_order_path(service_order.id),
                       controller: :service_orders,
                       target: :_blank,
                       action: :print_service_order, 
-                      format: :pdf %>
-                  <%= link_to 'Show', service_order_path(service_order) %>
-                  <%= link_to 'Editar', edit_service_order_path(service_order) %>
+                      format: :pdf,
+                      class: 'button button is-small is-warning is-light' %>
+                  <%= link_to 'Detalhes', service_order_path(service_order), 
+                      class: 'button is-small is-info is-light' %>
+                  <%= link_to 'Editar', edit_service_order_path(service_order), 
+                      class: 'button is-small is-link is-light' %>
                   <%= link_to "Deletar", service_order_path(service_order),
-                     method: :delete ,
+                     method: :delete , class: 'button is-small is-danger is-light',
                      data: { confirm: "Quer mesmo deletar essa Ordem de Serviço?" } %>
               </td>
             </tr>

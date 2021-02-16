@@ -2,7 +2,7 @@ class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vehicle, except: :index
   before_action :set_service, except: :index
-  before_action :set_budgets, except: :index
+  before_action :set_budgets, only: [:show, :print_service_order]
 
   def index
     @service_orders = ServiceOrder.includes(:vehicle).order(created_at: :asc)

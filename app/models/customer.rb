@@ -3,7 +3,7 @@ class Customer < ApplicationRecord
   validates :cnpj_cpf, uniqueness: true
 
   has_one :address, dependent: :destroy
-  has_many :vehicles
+  has_many :vehicles,  dependent: :destroy
 
   accepts_nested_attributes_for :address, reject_if: :all_blank
 end
