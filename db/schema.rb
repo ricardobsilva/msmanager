@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_01_28_034429) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
     t.string "cep"
     t.string "street"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_034429) do
     t.string "complement"
     t.string "neighborhood"
     t.string "city"
-    t.integer "customer_id"
+    t.bigint "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 2021_01_28_034429) do
   create_table "budgets", force: :cascade do |t|
     t.integer "amount"
     t.decimal "price", precision: 8, scale: 2
-    t.integer "service_order_id", null: false
-    t.integer "service_id", null: false
+    t.bigint "service_order_id", null: false
+    t.bigint "service_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["service_id"], name: "index_budgets_on_service_id"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_034429) do
     t.string "protocol_number"
     t.text "issue_reported"
     t.text "observation"
-    t.integer "vehicle_id", null: false
+    t.bigint "vehicle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["vehicle_id"], name: "index_service_orders_on_vehicle_id"
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_034429) do
     t.string "chassis"
     t.string "model"
     t.string "brand"
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_vehicles_on_customer_id"
