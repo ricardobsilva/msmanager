@@ -15,12 +15,14 @@
  *= require bulma/bulma
  */
 
+
 .maincontainer{
   padding-top: 20px;
 }
 
 .formLogin{
   padding-top: 130px;
+  justify-content: center;
 }
 
 #customErrorMessage{
