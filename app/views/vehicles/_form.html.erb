@@ -18,6 +18,23 @@
             </div>
           <% end %>
 
+          <% if !@customer.nil? %>
+            <div class="field">
+              <%= f.label "Cliente: #{@customer.name}", class: 'label' %>
+              <%= f.hidden_field :customer_id,
+                  value: @customer.id, class: 'input'
+              %>
+            </div>
+          <% else %>
+            <div class="field">
+              <%= f.label 'Cliente', class: 'label' %>
+              <%= f.collection_select :customer_id, 
+                  @customers, :id, :name, 
+                  {prompt: 'Selecione um Cliente'}, 
+                  {class: 'input', multiple: false, required: true}%>
+            </div>
+          <% end %>
+
           <div class="content">
             <div class="field">
               <%= f.label 'Placa', class: 'label' %>
@@ -29,18 +46,10 @@
 
             <div class="field">
               <%= f.label 'Ano', class: 'label' %>
-              <%= f.number_field :year, 
+              <%= f.number_field :year,
                   class: 'input',
                   required: true
                 %>
-            </div>
-
-            <div class="field">
-              <%= f.label 'Cliente', class: 'label' %>
-              <%= f.collection_select :customer_id, 
-                  @customers, :id, :name, 
-                  {prompt: 'Selecione um Cliente'}, 
-                  {class: 'input', multiple: false, required: true}%>
             </div>
 
             <div class="field">

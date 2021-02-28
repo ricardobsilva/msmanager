@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :customers do
     post "validate_email", to: 'customers#validate_email', on: :collection
     post "validate_cnpj_cpf", to: 'customers#validate_cnpj_cpf', on: :collection
+    resources :vehicles, only: [:new, :create]
   end
   resources :service_orders do
     get 'print', to: 'service_orders#print_service_order', on: :member, defaults: {format: :pdf}

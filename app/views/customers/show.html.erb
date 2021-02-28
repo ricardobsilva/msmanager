@@ -1,0 +1,124 @@
+<div class="columns is-centered">
+  <div class="column is-8">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title is-centered">
+          <%= @customer.name %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+            <div class="field">
+              <%= label(:customer, 'Nome', class: 'label') %>
+              <%= @customer.name %>
+            </div>
+
+            <div class="field">
+              <%= label(:customer, 'CPF/CNPJ', class: 'label') %>
+              <%= @customer.cnpj_cpf %>
+            </div>
+
+            <div class="field">
+              <%= label(:customer, 'Telefone', class: 'label') %>
+              <%= @customer.phone_number %>
+            </div>
+
+            <% if @customer.second_phone_number.present? %>
+              <div class="field">
+                <%= label(:customer, 'Telefone Adicional', class: 'label') %>
+                <%= @customer.second_phone_number %>
+              </div>
+            <% end %>
+
+            <div class="field">
+              <%= label(:customer, 'Email', class: 'label') %>
+              <%= @customer.email %>
+            </div>
+
+            <div class="field">
+              <%= label(:address, 'Endereço', class: 'label') %>
+              <%= @customer.address&.street %> 
+            </div>
+            <div class="field">
+              <%= label(:number, 'Número', class: 'label') %>
+              <%= @customer.address&.number %> 
+            </div>
+            <div class="field">
+              <%= label(:address, 'CEP', class: 'label') %>
+              <%= @customer.address&.cep %>
+            </div>
+          </div>
+        </div>
+        <header class="card-header">
+          <p class="card-header-title is-centered">
+            Veículos
+          </p>  
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <% if @customer.vehicles.any? %>
+              <div class="columns">
+                <div class="column">
+                  <table class="table is-fullwidth is-hoverable">
+                    <thead>
+                      <tr>
+                        <th>Placa</th>
+                        <th>Ano</th>
+                        <th>Chassi</th>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>
+                          <%= link_to 'Cadastrar Veículo', 
+                              new_customer_vehicle_path(@customer), 
+                              class: 'button is-primary is-small is-pulled-right'
+                            %>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @customer.vehicles.each do |vehicle|%>
+                      <tr>
+                        <td><%= vehicle.plate %></td>
+                        <td><%= vehicle.year %></td>
+                        <td><%= vehicle.chassis %></td>
+                        <td><%= vehicle.model %></td>
+                        <td><%= vehicle.brand %></td>
+                        <td>
+                          <div class="is-pulled-right">
+                            <%= link_to 'Editar', edit_vehicle_path(vehicle) %>
+                          </div>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <% else %>
+              <article class="message is-warning">
+                <div class="message-body">
+                   Nenhum veículo para <%= @customer.name %>. 
+                  <%= link_to 'Clique aqui', 
+                    new_customer_vehicle_path(@customer), 
+                    class: 'strong'
+                  %>
+                  para cadastrar um novo veículo
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <%= link_to 'Clientes', customers_path, 
+              class: 'button is-default is-focused is-fullwidth' %>
+        </div>
+        <div class="card-footer-item">
+          <%= link_to 'Editar', edit_customer_path(@customer), 
+              class: 'button is-primary is-focused is-fullwidth' %>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

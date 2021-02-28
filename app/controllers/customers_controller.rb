@@ -25,11 +25,15 @@ class CustomersController < ApplicationController
     end
   end
 
+  def show
+    @customer = Customer.find(params[:id])
+  end
+
   def create
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      redirect_to customers_path, notice: 'Cliente criado com sucesso'
+      redirect_to customer_path(@customer), notice: 'Cliente criado com sucesso'
     else
       render :new
     end

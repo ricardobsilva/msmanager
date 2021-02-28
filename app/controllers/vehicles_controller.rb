@@ -16,6 +16,7 @@ class VehiclesController < ApplicationController
   end
 
   def new
+    @customer = Customer.find(params[:customer_id]) if params[:customer_id].present?
     @vehicle = Vehicle.new
   end
 
