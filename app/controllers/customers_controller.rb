@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
 
     if @customer.update(customer_params)
-      redirect_to edit_customer_path(@customer), notice: 'Cliente atualizado com sucesso'
+      redirect_to edit_customer_path(@customer), notice: t('notices.customer.message')
     else
       render :edit
     end

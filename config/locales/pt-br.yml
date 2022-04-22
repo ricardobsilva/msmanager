@@ -1,4 +1,11 @@
 pt-br:
+  notices:
+    customer:
+      message: 'Cliente atualizado com sucesso' 
+  devise:
+    sessions:
+      user:
+        signed_in: 'Você está logado!'
   activerecord:
     attributes:
       customer:
