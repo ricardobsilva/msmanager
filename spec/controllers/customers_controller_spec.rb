@@ -55,14 +55,14 @@ RSpec.describe CustomersController, type: :controller do
         expect(Customer.count).to eq(1)
       end
 
-      it 'redirect to list customers' do
+      it 'redirect to details customers' do
         user = create(:user)
         sign_in user
         customer_params = attributes_for(:customer)
 
         post :create, params: { customer: customer_params }
 
-        expect(response).to redirect_to customers_path
+        expect(response).to redirect_to customer_path(Customer.last)
       end
     end
 
