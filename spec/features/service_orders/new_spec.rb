@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'ServiceOrders::New', type: :feature do
   scenario 'New Service Order Form' do
     customer = create(:customer)
-    service_order = create(:service_order, customer: customer)
+    vehicle = create(:vehicle, customer: customer)
+    service_order = create(:service_order, vehicle: vehicle)
     user = create(:user)
     sign_in user
 

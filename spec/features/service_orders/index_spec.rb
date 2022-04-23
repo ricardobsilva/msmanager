@@ -4,7 +4,8 @@ RSpec.describe 'ServiceOrders::Index', type: :feature do
   scenario 'List service orders' do
     user = create(:user)
     customer = create(:customer)
-    service_order = create(:service_order, customer: customer)
+    vehicle = create(:vehicle, customer: customer)
+    service_order = create(:service_order, vehicle: vehicle)
 
     sign_in user
     visit service_orders_path
