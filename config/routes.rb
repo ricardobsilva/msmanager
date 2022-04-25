@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     get 'print', to: 'service_orders#print_service_order', on: :member, defaults: {format: :pdf}
   end
   resources :vehicles
+  resources :services, only: [:create, :show, :new]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
