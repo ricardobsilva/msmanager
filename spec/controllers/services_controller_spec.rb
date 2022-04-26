@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ServicesController, type: :controller do
-  describe 'GET #create' do
+  describe 'post #create' do
     context 'Quando criar um serviço' do
       it 'redireciona para página de detalhes de serviço' do
         user = create(:user)
@@ -37,6 +37,19 @@ RSpec.describe ServicesController, type: :controller do
         get :new
 
         expect(response).to render_template(:new)
+      end
+    end
+  end
+  describe '#show' do
+    context 'quando criado serviço' do
+      it 'redirect to show' do
+        user = create(:user)
+        sign_in user
+        service = create(:service, name: "Alinhamento")
+       
+        get :show, params: { id: service.id }
+
+        expect(Service.last.name).to eq("Alinhamento")
       end
     end
   end

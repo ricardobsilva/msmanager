@@ -1,0 +1,38 @@
+<div class="columns is-centered">
+  <div class="column is-8">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title is-centered">
+          <%= @service.name %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+            <div class="field">
+              <%= label(:service, 'Nome do Serviço', class: 'label') %>
+              <%= @service.name %>
+            </div>
+
+            <div class="field">
+              <%= label(:service, 'Descrição', class: 'label') %>
+              <%= @service.description %>
+            </div>
+
+            <div class="field">
+              <%= label(:service, 'Valor', class: 'label') %>
+              <%= @service.price %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <%= link_to 'Serviço', service_path, 
+              class: 'button is-default is-focused is-fullwidth' %>
+        </div>
+        
+      </footer>
+    </div>
+  </div>
+</div>

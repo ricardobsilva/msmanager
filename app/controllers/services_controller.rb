@@ -1,6 +1,5 @@
 class ServicesController < ApplicationController
   def create
-    binding.pry
     @service = Service.new(service_params)
     if @service.save
       redirect_to service_path(@service), notice: 'Serviço criado com sucesso'
@@ -12,6 +11,10 @@ class ServicesController < ApplicationController
 
   def new
     @service = Service.new
+  end
+
+  def show
+    @service = Service.find(params[:id])
   end
 
   private
