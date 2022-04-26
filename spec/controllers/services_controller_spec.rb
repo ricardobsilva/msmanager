@@ -28,4 +28,16 @@ RSpec.describe ServicesController, type: :controller do
       end
     end
   end
+  describe 'GET #new' do
+    context 'ao acessar new' do
+      it 'new template' do
+        user = create(:user)
+        sign_in user
+        
+        get :new
+
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end
