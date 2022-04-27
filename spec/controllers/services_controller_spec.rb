@@ -12,14 +12,12 @@ RSpec.describe ServicesController, type: :controller do
        
         expect(Service.last.name).to eq("Troca de óleo")
         expect(response).to redirect_to service_path(Service.last)
-
       end
     end
     context 'Quando serviço não for salvo' do
       it 'redireciona para página de cadastro' do
         user = create(:user)
         sign_in user
-
         invalid_params = attributes_for(:service, name: nil)
 
         post :create, params: {service: invalid_params}
@@ -50,6 +48,7 @@ RSpec.describe ServicesController, type: :controller do
         get :show, params: { id: service.id }
 
         expect(Service.last.name).to eq("Alinhamento")
+        expect(response).to render_template(:show)
       end
     end
   end
