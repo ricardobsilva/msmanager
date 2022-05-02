@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :address do
+    customer { nil }
     cep { "MyString" }
     street { "MyString" }
     number { "MyString" }

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Customers::New', type: :feature do
-  scenario 'New customer Form' do
+  xscenario 'New customer Form' do
     customer = build(:customer)
     user = create(:user)
     sign_in user

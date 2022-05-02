@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Customers::Index', type: :feature do
-  scenario 'List customers' do
+  xscenario 'List customers' do
     user = create(:user)
     customer = create(:customer)
 

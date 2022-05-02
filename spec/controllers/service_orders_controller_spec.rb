@@ -102,4 +102,24 @@ RSpec.describe ServiceOrdersController, type: :controller do
       end
     end
   end
+  describe '#create' do
+    it '' do
+      user = create(:user)
+      customer = create(:customer)
+      address = create(:address, street:"4 andar", customer: customer)
+      vehicle = create(:vehicle, customer: customer)
+      service = create(:service, name: "Alinhamento")
+      service2 = create(:service, name: "Balanceamento")
+      sign_in user
+      params = attributes_for(
+        :service_order,observation: "Teste de envio", 
+        vehicle_id: vehicle.id,
+        budgets_attributes: [{service_id: service.id, price: 10.0}, {service_id: service2.id, price: 15.0}]
+      )
+
+      post :create, params: { service_order: params }
+       
+      expect(ServiceOrder.last.observation).to eq("Teste de envio")
+    end
+  end
 end
