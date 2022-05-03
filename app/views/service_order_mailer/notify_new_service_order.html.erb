@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ordem de serviço</title>
+  </head>
+  <body>
+    <h2>Ordem de serviço <%= @service_order.id %></h2>
+    <b><u>Cliente / Veículo</u></b>
+      <p><b> Nome: </b><%= @service_order.vehicle.customer.name %> </p>
+      <p><b> Endereço: </b> <%= @service_order.vehicle.customer.address&.street %> </p>
+      <p><b> Número: </b> <%= @service_order.vehicle.customer.address&.number %> </p>
+      <p><b> CEP: </b> <%= @service_order.vehicle.customer.address&.cep %> </p>
+      <p><b> Placa: </b><%= @service_order.vehicle.plate %> </p>
+      <p><b> Modelo/Ano: </b> <%= @service_order.vehicle.year %> </p>
+      <p><b> Marca: </b> <%= @service_order.vehicle.brand %> </p>
+      <p><b> Chassi: </b><%= @service_order.vehicle.chassis %> </p>
+
+    <b><u>Defeito / Reclamação</u></b>
+      <p><b> Descrição: </b><%= @service_order.issue_reported %> </p>
+      <p><b> Observações: </b><%= @service_order.observation %> </p>
+
+    <b><u>Serviços</u></b>
+      <% @service_order.budgets.each do |budget| %>
+        <p><b> Serviço: </b><%= budget.service.name %> </p>
+        <p><b> Valor: </b><%= budget.price %> </p>
+      <% end %>
+      
+    <p><b> Total:</b> R$ <%= @service_order.budgets.sum(:price) %> </p>
+  </body>
+</html>

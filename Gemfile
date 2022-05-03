@@ -35,7 +35,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.0'
-  gem 'rails-controller-testing', '~> 0.0.3'
+  gem 'rails-controller-testing', '1.0.5' 
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'factory_bot_rails'
   gem 'pry'

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ServiceOrders::New', type: :feature do
-  scenario 'New Service Order Form' do
+  xscenario 'New Service Order Form' do
     customer = create(:customer)
     vehicle = create(:vehicle, customer: customer)
     service_order = create(:service_order, vehicle: vehicle)
