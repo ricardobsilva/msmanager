@@ -1,4 +1,4 @@
-class ServiceOrderWorker
+class ServiceOrderMailWorker
   include Sidekiq::Job
   queue_as :default
   sidekiq_options retry: false
