@@ -33,7 +33,7 @@ class ServiceOrdersController < ApplicationController
     
     if @service_order.save
       redirect_to service_order_path(@service_order), notice: 'Ordem de Serviço criada com sucesso'
-      ServiceOrderMailer.with(service_order: @service_order.id).notify_new_service_order.deliver_now
+      ServiceOrderMailWorker.perform_async(@service_order.id)
     else
       render :new
     end
