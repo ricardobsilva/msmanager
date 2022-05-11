@@ -8,7 +8,7 @@ RSpec.describe ServiceOrderMailWorker do
       service_order = create(:service_order, vehicle: vehicle)
       user = create(:user)
       
-      mail_worker = ServiceOrderMailWorker.new.perform(service_order.id)
+      ServiceOrderMailWorker.new.perform(service_order.id)
       
       expect(ActionMailer::Base.deliveries.count).to eq(1)
     end
