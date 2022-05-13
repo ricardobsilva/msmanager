@@ -7,7 +7,7 @@ RSpec.describe ServicesController, type: :controller do
         user = create(:user)
         sign_in user
         service_params = attributes_for(:service, name: "Troca de óleo", user_id: user.id)
-       
+    
         post :create, params: { service: service_params }
        
         expect(Service.last.name).to eq("Troca de óleo")
@@ -22,7 +22,7 @@ RSpec.describe ServicesController, type: :controller do
 
         post :create, params: {service: invalid_params}
 
-        expect(response).to render_template(:new)
+        expect(response).to render_template(:show)
       end
     end
   end
