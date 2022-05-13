@@ -22,7 +22,7 @@ RSpec.describe ServicesController, type: :controller do
 
         post :create, params: {service: invalid_params}
 
-        expect(response).to render_template(:new)
+        expect(response).to render_template(:show)
       end
     end
   end
