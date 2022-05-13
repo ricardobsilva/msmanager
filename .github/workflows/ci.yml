@@ -1,4 +1,4 @@
-name: "Ruby on Rails CI"
+name: "CI"
 on:
   push:
     branches: [ master ]
@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.20.0
+          node-version: 14.0.0
 
       - name: Yarn package cache
         uses: actions/cache@v2
