@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:validate_email, :validate_cnpj_cpf]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.paginate(page: params[:page],per_page: 10)
   end
 
   def new

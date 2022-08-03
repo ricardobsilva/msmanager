@@ -1,0 +1,52 @@
+<div class="columns is-centered">
+  <div class="column is-8">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title is-centered">
+          <%= @vehicle.model %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+            <div class="field">
+              <%= label(:vehicle, 'Cliente', class: 'label') %>
+              <%= @vehicle.customer.name %>
+            </div>
+
+            <div class="field">
+              <%= label(:vehicle, 'Placa', class: 'label') %>
+              <%= @vehicle.plate %>
+            </div>
+
+            <div class="field">
+              <%= label(:vehicle, 'Ano', class: 'label') %>
+              <%= @vehicle.year %>
+            </div>
+
+            <div class="field">
+              <%= label(:vehicle, 'Número do Chassi', class: 'label') %>
+              <%= @vehicle.chassis %>
+            </div>
+
+            <div class="field">
+              <%= label(:vehicle, 'Modelo', class: 'label') %>
+              <%= @vehicle.model %>
+            </div>
+
+            <div class="field">
+              <%= label(:vehicle, 'Marca', class: 'label') %>
+              <%= @vehicle.brand %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <%= link_to 'Veículos', vehicle_path, 
+              class: 'button is-default is-focused is-fullwidth' %>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

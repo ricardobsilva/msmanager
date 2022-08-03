@@ -5,14 +5,18 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
 
     if @vehicle.save
-      redirect_to edit_vehicle_path(@vehicle)
+      redirect_to vehicle_path(@vehicle)
     else
       render :new
     end
   end
+  
+  def show
+    @vehicle = Vehicle.find(params[:id])
+  end
 
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.paginate(page: params[:page],per_page: 8)
   end
 
   def new
