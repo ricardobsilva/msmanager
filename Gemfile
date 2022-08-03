@@ -32,6 +32,7 @@ gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary', '~> 0.12.3'
 gem "sidekiq", "~> 6.4"
 gem "redis", "~> 4.6"
+gem 'will_paginate', '~> 3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,6 +43,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'dotenv-rails'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do
@@ -54,7 +56,7 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 4.0'
+  
   gem 'rspec-sidekiq'
 end
 

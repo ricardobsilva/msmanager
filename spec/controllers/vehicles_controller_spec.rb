@@ -42,7 +42,7 @@ RSpec.describe VehiclesController, type: :controller do
 
         post :create, params: { vehicle: vehicle_params }
 
-        expect(response).to redirect_to edit_vehicle_path(Vehicle.last)
+        expect(response).to redirect_to vehicle_path(Vehicle.last)
       end
     end
 
@@ -56,6 +56,22 @@ RSpec.describe VehiclesController, type: :controller do
         post :create, params: { vehicle: vehicle_params }
 
         expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe '#show' do
+    context 'quando criado vehicle' do
+      it 'redirect to show' do
+        user = create(:user)
+        customer = create(:customer)
+        sign_in user
+        vehicle = create(:vehicle, model: "Ka", customer_id: customer.id)
+        
+        get :show, params: { id: vehicle.id }
+
+        expect(Vehicle.last.model).to eq("Ka")
+        expect(response).to render_template(:show)
       end
     end
   end

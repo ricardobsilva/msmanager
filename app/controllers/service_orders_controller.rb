@@ -5,7 +5,7 @@ class ServiceOrdersController < ApplicationController
   before_action :set_budgets, only: [:show, :print_service_order]
 
   def index
-    @service_orders = ServiceOrder.includes(:vehicle).order(created_at: :asc)
+    @service_orders = ServiceOrder.includes(:vehicle).order(created_at: :asc).paginate(page: params[:page],per_page: 8)
   end
 
   def new
